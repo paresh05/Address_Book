@@ -1,4 +1,6 @@
 package com.bridgelabzd12;  
+import java.util.*;  
+
 /* Class Contact
  * This class is used to initialize the contact information of a person 
  * The information cannot be accessed in another class since they are made private 
@@ -92,16 +94,34 @@ public class AddressBook {
 
 	public static void main(String[] args) {
 			System.out.println("Welcome to Address Book");
+			Scanner sc = new Scanner(System.in);  
+			System.out.println("Enter First Name");
+			String firstName=sc.nextLine();
+			System.out.println("Enter Last Name");
+			String lastName=sc.nextLine();
+			System.out.println("Enter Address");
+			String address=sc.nextLine();
+			System.out.println("Enter city");
+			String city=sc.nextLine();
+			System.out.println("Enter state");
+			String state=sc.nextLine();
+			System.out.println("Enter zip code");
+			String zipCode=sc.nextLine();
+			System.out.println("Enter Phone Number");
+			String phoneNumber=sc.nextLine();
+			System.out.println("Enter Email");
+			String email=sc.nextLine();
+			
 			// Object Creation
-			Contact obj = new Contact("Paresh","Praveen","Surathkal","Mangalore","Karnataka","575014","8050146095","pareshpraveen@gmail.com");
-			System.out.println(obj.getFirstName());
-			System.out.println(obj.getLastName());
-			System.out.println(obj.getAddress());
-			System.out.println(obj.getCity());
-			System.out.println(obj.getState());
-			System.out.println(obj.getZipCode());
-			System.out.println(obj.getPhoneNumber());
-			System.out.println(obj.getEmail());
+			Contact obj = new Contact(firstName, lastName, address, city,state,  zipCode, phoneNumber,email);
+			System.out.println("First Name: "+obj.getFirstName());
+			System.out.println("Last Name: "+obj.getLastName());
+			System.out.println("Address: "+obj.getAddress());
+			System.out.println("City: "+obj.getCity());
+			System.out.println("State "+obj.getState());
+			System.out.println("Zip Code "+obj.getZipCode());
+			System.out.println("Phone Number"+obj.getPhoneNumber());
+			System.out.println("Email: "+obj.getEmail());
 	}
 
 }
