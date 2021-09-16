@@ -6,7 +6,7 @@ public class AddressBook {
 	public AddressBook() {
 		contactInfo = new ArrayList<ContactInfo>();
 	}
-	
+
 	/**
 	 *This function is used to add contacts to the contactInfo arraylist
 	 *@return nothing 
@@ -18,25 +18,29 @@ public class AddressBook {
 		String firstName=sc.nextLine();
 		System.out.println("Enter Last Name");
 		String lastName=sc.nextLine();
-		System.out.println("Enter Address");
-		String address=sc.nextLine();
-		System.out.println("Enter city");
-		String city=sc.nextLine();
-		System.out.println("Enter state");
-		String state=sc.nextLine();
-		System.out.println("Enter zip code");
-		String zipCode=sc.nextLine();
-		System.out.println("Enter Phone Number");
-		String phoneNumber=sc.nextLine();
-		System.out.println("Enter Email");
-		String email=sc.nextLine();
+		if(duplicateCheck(firstName,lastName)==false) 
+		{
+			System.out.println("Enter Address");
+			String address=sc.nextLine();
+			System.out.println("Enter city");
+			String city=sc.nextLine();
+			System.out.println("Enter state");
+			String state=sc.nextLine();
+			System.out.println("Enter zip code");
+			String zipCode=sc.nextLine();
+			System.out.println("Enter Phone Number");
+			String phoneNumber=sc.nextLine();
+			System.out.println("Enter Email");
+			String email=sc.nextLine();
 
-		ContactInfo contact = new ContactInfo(firstName, lastName, address, city,state,  zipCode, phoneNumber,email);
-		contactInfo.add(contact);
-		System.out.println(contact);
-		//edit(firstName,lastName,address,city,state,zipCode,phoneNumber,email);//Function call to edit function
+			ContactInfo contact = new ContactInfo(firstName, lastName, address, city,state,  zipCode, phoneNumber,email);
+			contactInfo.add(contact);
+			System.out.println(contact);
+		}
+		else
+			addContact();
 	}
-	
+
 	/**
 	 *This function is used to delete contacts from the contactInfo arraylist
 	 *@return nothing 
@@ -62,9 +66,9 @@ public class AddressBook {
 		Scanner sc = new Scanner(System.in);  
 		System.out.println("Enter the name");
 		String input=sc.nextLine();
-		
+
 		for(int i=0;i<contactInfo.size();i++) {
-			
+
 			ContactInfo obj = (ContactInfo)contactInfo.get(i);
 			if(input.equals(obj.getFirstName())){
 
@@ -109,7 +113,7 @@ public class AddressBook {
 			}
 		}
 	}
-	
+
 	/**
 	 *This function is used to get the choice of operation to be performed from the user
 	 *@return nothing 
@@ -138,7 +142,7 @@ public class AddressBook {
 		}
 		AddressBook.displayContact();
 	}
-	
+
 	/**
 	 *This function is used to display the contacts in the contactInfo arraylist
 	 *@return nothing 
@@ -148,5 +152,23 @@ public class AddressBook {
 			System.out.println(element);
 		}
 	}
+	
+	/**
+	 *This function is used to check if the name is a already entered in the contact list or not
+	 *@return nothing 
+	 */
+	public static boolean duplicateCheck(String firstName,String lastName) {
+		int duplicateCheck=0;
+		for(ContactInfo element : contactInfo) {
+			if((element.getFirstName().equalsIgnoreCase(firstName))&&(element.getLastName().equalsIgnoreCase(lastName))) {
+				System.out.println("Name is already in the list");
+				duplicateCheck = 1;
+				return true;
+			}
+		}
+			return false;
 		
+	}
+
+
 }
