@@ -6,12 +6,6 @@ public class AddressBook {
 	public AddressBook() {
 		contactInfo = new ArrayList<ContactInfo>();
 	}
-	private static ContactInfo getPerson(ArrayList<ContactInfo> contactInfo){
-		for(int i=0;i<contactInfo.size();){
-			return contactInfo.get(i);
-		}
-		return null;
-	}
 	
 	/**
 	 *This function is used to add contacts to the contactInfo arraylist
@@ -60,7 +54,7 @@ public class AddressBook {
 		}
 	}
 
-	/* Function Edit
+	/** Function Edit
 	 * This function is used to edit the information entered by the user
 	 */
 	public void edit()
@@ -117,21 +111,13 @@ public class AddressBook {
 	}
 	
 	/**
-	 *This function is used to display the contacts in the contactInfo arraylist
+	 *This function is used to get the choice of operation to be performed from the user
 	 *@return nothing 
 	 */
-	public static void displayContact() {
-		for(ContactInfo element : contactInfo) {
-			System.out.println(element);
-		}
-	}
-
-	public static void main(String[] args) {
-		System.out.println("Welcome to Address Book");
-		AddressBook ab = new AddressBook();
+	public void choice (AddressBook ab) {
 		int choice,exit=0;
 		while(exit==0) {
-			System.out.println("Enter 1 to add contact, 2 to edit contact, 3 to delete contact, and 4 to exit");
+			System.out.println("Enter 1 to add contact, 2 to edit contact, 3 to delete contact, 4 to exit");
 			Scanner sc = new Scanner(System.in);  
 			System.out.println("Enter your choice");
 			choice=sc.nextInt();
@@ -140,7 +126,6 @@ public class AddressBook {
 				ab.addContact();
 				break;
 			case 2:
-				ContactInfo personInfo=getPerson(contactInfo);
 				ab.edit();
 				break;
 			case 3:
@@ -151,6 +136,17 @@ public class AddressBook {
 				break;
 			}
 		}
-		displayContact();
+		AddressBook.displayContact();
 	}
+	
+	/**
+	 *This function is used to display the contacts in the contactInfo arraylist
+	 *@return nothing 
+	 */
+	public static void displayContact() {
+		for(ContactInfo element : contactInfo) {
+			System.out.println(element);
+		}
+	}
+		
 }
