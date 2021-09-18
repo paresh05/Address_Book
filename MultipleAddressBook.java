@@ -11,18 +11,29 @@ public class MultipleAddressBook {
 
 		int userInput = 1;
 		System.out.println("Welcome to Address Book");
+		Scanner sc = new Scanner(System.in);
 
+		AddressBook addressBook;
 		while(userInput == 1) {
-			
-			AddressBook addressBook = new AddressBook();
+
+			addressBook = new AddressBook();
 			System.out.println("Enter the name of the address book");
-			Scanner sc = new Scanner(System.in);
 			String addressBookName = sc.nextLine();
 			multipleAddressBook.put(addressBookName, addressBook);
 			addressBook.choice(addressBook);
 			System.out.println("To Create another Address Book, Enter 1");
 			userInput = sc.nextInt();
+			sc.nextLine();
 		}
+
+		System.out.println("Enter the name of the city or state");
+		String stateOrCity = sc.nextLine();
+		for(Map.Entry<String, AddressBook> entry:multipleAddressBook.entrySet()) {
+			System.out.println("Name of the Address Book : "+entry.getKey());
+			entry.getValue().searchByCity(stateOrCity);
+		}
+
+
 	}
 }
 

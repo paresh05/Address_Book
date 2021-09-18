@@ -1,7 +1,7 @@
 package com.bridgelabzd12;  
 import java.util.*;  
 public class AddressBook {
-	public static ArrayList <ContactInfo> contactInfo;
+	ArrayList <ContactInfo> contactInfo;
 
 	public AddressBook() {
 		contactInfo = new ArrayList<ContactInfo>();
@@ -140,35 +140,44 @@ public class AddressBook {
 				break;
 			}
 		}
-		AddressBook.displayContact();
+		ab.displayContact();
 	}
 
 	/**
 	 *This function is used to display the contacts in the contactInfo arraylist
 	 *@return nothing 
 	 */
-	public static void displayContact() {
+	public  void displayContact() {
 		for(ContactInfo element : contactInfo) {
 			System.out.println(element);
 		}
 	}
-	
+
 	/**
 	 *This function is used to check if the name is a already entered in the contact list or not
 	 *@return nothing 
 	 */
-	public static boolean duplicateCheck(String firstName,String lastName) {
-		int duplicateCheck=0;
+	public  boolean duplicateCheck(String firstName,String lastName) {
 		for(ContactInfo element : contactInfo) {
 			if((element.getFirstName().equalsIgnoreCase(firstName))&&(element.getLastName().equalsIgnoreCase(lastName))) {
 				System.out.println("Name is already in the list");
-				duplicateCheck = 1;
 				return true;
 			}
 		}
-			return false;
-		
+		return false;
+
 	}
 
+	/**
+	 *This function is used to search the search Person in a City or State across the multiple AddressBook
+	 *@return nothing 
+	 */
+	public void searchByCity(String city) {
+		for(ContactInfo element : contactInfo) {
+			if((element.getCity().equalsIgnoreCase(city))||(element.getState().equalsIgnoreCase(city))) {
+				System.out.println(element.getFirstName()+" "+element.getLastName()+" "+"is from "+city);
+			}
+		}
+	}
 
 }
