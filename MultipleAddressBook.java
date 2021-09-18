@@ -3,10 +3,19 @@ package com.bridgelabzd12;
 import java.util.*;
 
 
+/**
+ * @author paresh.praveen_ymedi
+ * @class member multipleAddressBook is used the store the multiple address books 
+ */
 public class MultipleAddressBook {
 
 	public static Map<String,AddressBook> multipleAddressBook = new HashMap<String,AddressBook>();
-
+	public static Map<String,String> personByCity = new HashMap<String,String>();
+	public static Map<String,String> personByState = new HashMap<String,String>();
+	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		int userInput = 1;
@@ -21,19 +30,27 @@ public class MultipleAddressBook {
 			String addressBookName = sc.nextLine();
 			multipleAddressBook.put(addressBookName, addressBook);
 			addressBook.choice(addressBook);
+			for(ContactInfo element : addressBook.contactInfo) {
+				personByCity.put((element.getFirstName()+" "+element.getLastName()), element.getCity());
+				personByState.put((element.getFirstName()+" "+element.getLastName()), element.getState());
+				
+			}
 			System.out.println("To Create another Address Book, Enter 1");
 			userInput = sc.nextInt();
 			sc.nextLine();
 		}
-
-		System.out.println("Enter the name of the city or state");
-		String stateOrCity = sc.nextLine();
-		for(Map.Entry<String, AddressBook> entry:multipleAddressBook.entrySet()) {
-			System.out.println("Name of the Address Book : "+entry.getKey());
-			entry.getValue().searchByCity(stateOrCity);
+		
+		System.out.println("Veiw Person by city");
+		for(Map.Entry<String, String> entry:personByCity.entrySet()) 
+		{
+			System.out.println("Name of the Person: "+entry.getKey()+", City: "+entry.getValue());
 		}
-
-
+		
+		System.out.println("Veiw Person by State");
+		for(Map.Entry<String, String> entry:personByState.entrySet()) 
+		{
+			System.out.println("Name of the Person: "+entry.getKey()+", State: "+entry.getValue());
+		}
 	}
 }
 
