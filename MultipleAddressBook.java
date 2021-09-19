@@ -4,8 +4,14 @@ import java.util.*;
 
 
 /**
- * @author paresh.praveen_ymedi
+ * @author paresh.praveen
+ * 
  * @class member multipleAddressBook is used the store the multiple address books 
+ * @class member personByCity is used the store the persons and their cities
+ * @class member personByState is used the store the persons and their state
+ * @class member countofCity is used the store the count of persons from a city
+ * @class member countofState is used the store the count of persons from a state
+ * 
  */
 public class MultipleAddressBook {
 

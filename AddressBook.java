@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
-import java. util. Collection;
-import java.util.Collections;
 public class AddressBook {
 	List <ContactInfo> contactInfo;
 	List<ContactInfo> sortedContactInfo;
@@ -126,9 +124,10 @@ public class AddressBook {
 	 *@return nothing 
 	 */
 	public void choice (AddressBook ab) {
-		int choice,exit=0;
+		int choice;
+		int exit=0;
 		while(exit==0) {
-			System.out.println("Enter 1 to add contact, 2 to edit contact, 3 to delete contact, 4 to exit");
+			System.out.println("Enter 1 to add contact, 2 to edit contact, 3 to delete contact, 4 to sort by name, 5 to sort by city, 6 to sort by state, 7 to sort by zip code, 8 to exit");
 			Scanner sc = new Scanner(System.in);  
 			System.out.println("Enter your choice");
 			choice=sc.nextInt();
@@ -143,11 +142,27 @@ public class AddressBook {
 				ab.deleteContact();
 				break;
 			case 4:
+				ab.sortByName();
+				ab.displayContact();
+				break;
+			case 5:
+				ab.sortByCity();
+				ab.displayContact();
+				break;
+			case 6:
+				ab.sortByState();
+				ab.displayContact();
+				break;
+			case 7:
+				ab.sortByZipCode();
+				ab.displayContact();
+				break;
+			case 8:
 				exit=1;
 				break;
 			}
 		}
-		ab.sortList();
+		
 		ab.displayContact();
 	}
 
@@ -189,11 +204,34 @@ public class AddressBook {
 	}
 	
 	/**
-	 *This function is used to sort the contactInfo entries alphabetically by persons name
+	 *This function is used to sort the contactInfo entries alphabetically by Persons Name
 	 *@return nothing 
 	 */
-	public void sortList() {
-		sortedContactInfo = contactInfo.stream().sorted(ContactInfo.contact).collect(Collectors.toList());
+	public void sortByName() {
+		sortedContactInfo = contactInfo.stream().sorted(ContactInfo.contactName).collect(Collectors.toList());
 	}
-
+	
+	/**
+	 *This function is used to sort the contactInfo entries by City
+	 *@return nothing 
+	 */
+	public void sortByCity() {
+		sortedContactInfo = contactInfo.stream().sorted(ContactInfo.contactCity).collect(Collectors.toList());
+	}
+	
+	/**
+	 *This function is used to sort the contactInfo entries by State
+	 *@return nothing 
+	 */
+	public void sortByState() {
+		sortedContactInfo = contactInfo.stream().sorted(ContactInfo.contactState).collect(Collectors.toList());
+	}
+	
+	/**
+	 *This function is used to sort the contactInfo entries by Zip code
+	 *@return nothing 
+	 */
+	public void sortByZipCode() {
+		sortedContactInfo = contactInfo.stream().sorted(ContactInfo.contactZipCode).collect(Collectors.toList());
+	}
 }

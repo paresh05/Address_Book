@@ -91,16 +91,42 @@ public class ContactInfo {
 		this.email = email; 
 	} 	
 
-	public static Comparator<ContactInfo> contact = new Comparator<ContactInfo>() {
+	public static Comparator<ContactInfo> contactName = new Comparator<ContactInfo>() {
 		@Override
 		public int compare(ContactInfo c1,ContactInfo c2) {
-			String cName1 = c1.getFirstName();
-			String cName2 = c2.getFirstName();
-			return cName1.compareTo(cName2);
+			String firstName1 = c1.getFirstName();
+			String firstName2 = c2.getFirstName();
+			return firstName1.compareTo(firstName2);
 		}
-		
-		
 	};
+	
+	public static Comparator<ContactInfo> contactCity = new Comparator<ContactInfo>() {
+		@Override
+		public int compare(ContactInfo c1,ContactInfo c2) {
+			String city1 = c1.getCity();
+			String city2 = c2.getCity();
+			return city1.compareTo(city2);
+		}
+	};
+	
+	public static Comparator<ContactInfo> contactState = new Comparator<ContactInfo>() {
+		@Override
+		public int compare(ContactInfo c1,ContactInfo c2) {
+			String state1 = c1.getState();
+			String state2 = c2.getState();
+			return state1.compareTo(state2);
+		}
+	};
+	
+	public static Comparator<ContactInfo> contactZipCode = new Comparator<ContactInfo>() {
+		@Override
+		public int compare(ContactInfo c1,ContactInfo c2) {
+			String zipCode1 = c1.getZipCode();
+			String zipcode2 = c2.getZipCode();
+			return zipCode1.compareTo(zipcode2);
+		}
+	};
+	
 	@Override
 	public String toString() {
 		return "ContactInfo [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
