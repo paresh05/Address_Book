@@ -1,7 +1,14 @@
 package com.bridgelabzd12;  
-import java.util.*;  
+
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java. util. Collection;
+import java.util.Collections;
 public class AddressBook {
-	ArrayList <ContactInfo> contactInfo;
+	List <ContactInfo> contactInfo;
+	List<ContactInfo> sortedContactInfo;
 
 	public AddressBook() {
 		contactInfo = new ArrayList<ContactInfo>();
@@ -140,6 +147,7 @@ public class AddressBook {
 				break;
 			}
 		}
+		ab.sortList();
 		ab.displayContact();
 	}
 
@@ -148,7 +156,7 @@ public class AddressBook {
 	 *@return nothing 
 	 */
 	public  void displayContact() {
-		for(ContactInfo element : contactInfo) {
+		for(ContactInfo element : sortedContactInfo) {
 			System.out.println(element);
 		}
 	}
@@ -178,6 +186,14 @@ public class AddressBook {
 				System.out.println(element.getFirstName()+" "+element.getLastName()+" "+"is from "+city);
 			}
 		}
+	}
+	
+	/**
+	 *This function is used to sort the contactInfo entries alphabetically by persons name
+	 *@return nothing 
+	 */
+	public void sortList() {
+		sortedContactInfo = contactInfo.stream().sorted(ContactInfo.contact).collect(Collectors.toList());
 	}
 
 }

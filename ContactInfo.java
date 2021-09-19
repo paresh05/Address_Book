@@ -1,5 +1,7 @@
 package com.bridgelabzd12;
 
+import java.util.Comparator;
+
 /* Class Contact
  * This class is used to initialize the contact information of a person 
  * The information cannot be accessed in another class since they are made private 
@@ -89,6 +91,16 @@ public class ContactInfo {
 		this.email = email; 
 	} 	
 
+	public static Comparator<ContactInfo> contact = new Comparator<ContactInfo>() {
+		@Override
+		public int compare(ContactInfo c1,ContactInfo c2) {
+			String cName1 = c1.getFirstName();
+			String cName2 = c2.getFirstName();
+			return cName1.compareTo(cName2);
+		}
+		
+		
+	};
 	@Override
 	public String toString() {
 		return "ContactInfo [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
