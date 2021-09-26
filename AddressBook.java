@@ -3,6 +3,9 @@ package com.bridgelabzd12;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 public class AddressBook {
 	List <ContactInfo> contactInfo;
@@ -46,6 +49,37 @@ public class AddressBook {
 			addContact();
 	}
 
+	/**This function is used to write the file passed
+	 * @param file is the name of the file to write
+	 */
+	public void writeFile(String file) {
+		try {
+			FileWriter writer = new FileWriter(file + ".txt", true);
+			for (int i = 0; i < contactInfo.size(); i++) {
+				writer.write("\nFirst Name: "+contactInfo.get(i).getFirstName()+"\nLast Name: "+contactInfo.get(i).getLastName()
+						+"\nAddess: "+contactInfo.get(i).getAddress()+"\nCity: "+contactInfo.get(i).getCity()
+						+"\nState: "+contactInfo.get(i).getState()+"\nZip Code:"+contactInfo.get(i).getZipCode()
+						+"\nPhone Number: "+contactInfo.get(i).getPhoneNumber()+"\nEmail: "+contactInfo.get(i).getEmail());
+			}
+			writer.close();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	/**This function is used to read the file passed
+	 * @param file is the name of the file to read
+	 * @throws IOException
+	 */
+	public void readFile(String file) throws IOException
+	{
+		FileReader fr =new FileReader(file+".txt");
+		int i;
+		while ((i=fr.read()) != -1)
+			System.out.print((char) i);
+	}
 	/**
 	 *This function is used to delete contacts from the contactInfo arraylist
 	 *@return nothing 
@@ -162,7 +196,7 @@ public class AddressBook {
 				break;
 			}
 		}
-		
+
 		ab.displayContact();
 	}
 
@@ -202,7 +236,7 @@ public class AddressBook {
 			}
 		}
 	}
-	
+
 	/**
 	 *This function is used to sort the contactInfo entries alphabetically by Persons Name
 	 *@return nothing 
@@ -210,7 +244,7 @@ public class AddressBook {
 	public void sortByName() {
 		sortedContactInfo = contactInfo.stream().sorted(ContactInfo.contactName).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 *This function is used to sort the contactInfo entries by City
 	 *@return nothing 
@@ -218,7 +252,7 @@ public class AddressBook {
 	public void sortByCity() {
 		sortedContactInfo = contactInfo.stream().sorted(ContactInfo.contactCity).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 *This function is used to sort the contactInfo entries by State
 	 *@return nothing 
@@ -226,7 +260,7 @@ public class AddressBook {
 	public void sortByState() {
 		sortedContactInfo = contactInfo.stream().sorted(ContactInfo.contactState).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 *This function is used to sort the contactInfo entries by Zip code
 	 *@return nothing 

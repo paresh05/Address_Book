@@ -1,5 +1,6 @@
 package com.bridgelabzd12;
 
+import java.io.IOException;
 import java.util.*;
 
 
@@ -23,8 +24,9 @@ public class MultipleAddressBook {
 
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		int userInput = 1;
 		System.out.println("Welcome to Address Book");
@@ -47,10 +49,10 @@ public class MultipleAddressBook {
 			userInput = sc.nextInt();
 			sc.nextLine();
 		}
-		
-		
+
+
 		//Code to view a person by state and also to display the count of persons from a state
-		
+
 		System.out.println("Veiw Person by city");
 
 		for(Map.Entry<String, String> entry:personByCity.entrySet()) 
@@ -70,7 +72,7 @@ public class MultipleAddressBook {
 		}
 
 		//Code to view a person by state and also to display the count of persons from a state
-		
+
 		System.out.println("Veiw Person by State");
 		for(Map.Entry<String, String> entry:personByState.entrySet()) 
 		{
@@ -88,6 +90,19 @@ public class MultipleAddressBook {
 
 		for(String element: countofState) {
 			System.out.println(element);
+		}
+
+		System.out.println("Enter 1 to write to a file, 0 to read the file");
+		int choice = sc.nextInt();
+		sc.nextLine();
+		System.out.println("Enter The AddressBook name");
+		String addressBookName = sc.nextLine();
+
+		if(choice==1) {
+			multipleAddressBook.get(addressBookName).writeFile(addressBookName);
+		}
+		else if(choice == 0) {
+			multipleAddressBook.get(addressBookName).readFile(addressBookName);
 		}
 	}
 }
